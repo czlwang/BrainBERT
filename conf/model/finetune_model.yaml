@@ -1,0 +1,14 @@
+name: finetune_model
+hidden_dim: 768
+#layer_dim_feedforward: 3072
+#layer_activation: gelu
+#nhead: 12
+#encoder_num_layers: 3
+input_dim: 40
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-17/02-03-52/checkpoint_last.pth #trained weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-05-28/01-20-42/checkpoint_last.pth #trained weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-14/13-14-18/checkpoint_last.pth #random weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-17/18-00-23/checkpoint_last.pth #trained_weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-07-19/17-25-17/checkpoint_last.pth #trained on all subject3 electrodes
+upstream_ckpt: /storage/czw/self_supervised_seeg/pretrained_weights/stft_large_pretrained.pth #trained on all subject3 electrodes
+frozen_upstream: False

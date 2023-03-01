@@ -1,0 +1,5 @@
+name: masked_tf_dataset
+val_split: 0.1
+data: /storage/czw/self_supervised_seeg/all_day_data/manifests
+cached_features: /storage/czw/self_supervised_seeg/all_day_data_morelet/manifests
+preprocessor: morelet

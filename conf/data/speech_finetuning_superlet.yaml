@@ -1,0 +1,19 @@
+name: speech_finetuning
+high_gamma: False
+samp_frequency: 2048
+raw_brain_data_dir: /storage/datasets/neuroscience/ecog
+#raw_brain_data_dir: /storage/czw/LanguageEcog/semantics/all_day_data/
+subject: subject4
+electrodes: ['T1Id6']
+brain_runs: ['trial000', 'trial001']
+rereference: laplacian
+normalization: False
+despike: False
+delta: -0.5
+duration: 3.0
+words: []
+cached_transcript_aligns: /storage/czw/LanguageEcog/semantics/saved_aligns
+#cached_transcript_aligns: None
+val_split: 0.1
+preprocessor: superlet
+cache_input_features: /storage/czw/self_supervised_seeg/cached_input_features/speech_finetuning_superlet_features

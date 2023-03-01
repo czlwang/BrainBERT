@@ -1,0 +1,7 @@
+name: debug_model
+hidden_dim: 768
+layer_dim_feedforward: 3072
+layer_activation: gelu
+nhead: 12
+encoder_num_layers: 3
+input_dim: 48

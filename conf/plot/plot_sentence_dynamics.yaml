@@ -1,0 +1,5 @@
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-07-19/17-25-17/checkpoint_last.pth #trained on all subject3 electrodes
+upstream_ckpt: /storage/czw/self_supervised_seeg/pretrained_weights/stft_large_pretrained.pth
+#upstream_ckpt: /storage/czw/self_supervised_seeg/pretrained_weights/random_large_model.pth
+output_dir: /storage/czw/self_supervised_seeg/outputs/plotting_outputs/sentence_dynamic_plots
+#output_dir: /storage/czw/self_supervised_seeg/outputs/plotting_outputs/sentence_dynamic_plots_random

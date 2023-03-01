@@ -1,0 +1,20 @@
+runner:
+    lr: 1e-4
+    optim: LAMB
+    train_batch_size: 256
+    valid_batch_size: 256
+    shuffle: False
+    multi_gpu: True
+    device: cuda
+    total_steps: 400000
+    #world_size: 4
+    num_workers: 16
+    log_step: 1000
+    checkpoint_step: 1000
+    grad_clip: 1.0
+    #start_from_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-05-13/02-28-15/checkpoint_last.pth
+    scheduler:
+        #name: reduce_on_plateau
+        name: ramp_up
+        total_steps: ${exp.runner.total_steps}
+        warmup: 0.025

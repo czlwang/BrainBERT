@@ -1,0 +1,2 @@
+name: pretrain_masked_criterion
+alpha: 2 #how much more important are the non-zero portions?

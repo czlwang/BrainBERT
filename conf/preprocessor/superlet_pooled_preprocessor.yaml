@@ -1,0 +1,9 @@
+name: spec_pooled_preprocessor
+spec_name: superlet
+c1: 1
+order_min: 3
+order_max: 30
+decim: 50
+min_f: 0.1
+max_f: 200
+n_f_steps: 40 #foi = linspace(f_min, f_max, n_f_steps)

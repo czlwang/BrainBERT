@@ -1,0 +1,6 @@
+upstream_ckpt: /storage/czw/self_supervised_seeg/pretrained_weights/stft_large_pretrained.pth #trained on all subject3 electrodes
+raw_spec: False
+dim_reduce: pca
+n_components: 200
+test_split_path: /storage/czw/self_supervised_seeg/data/test_split_trials.json
+out_dir: /storage/czw/self_supervised_seeg/effective_dim_results/full_brain

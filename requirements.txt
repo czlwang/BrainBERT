@@ -1,0 +1,15 @@
+omegaconf
+hydra-core
+scipy
+h5py
+python-dateutil
+tqdm
+pandas
+mne
+psutil
+tensorboardX
+git+https://github.com/ildoonet/pytorch-gradual-warmup-lr.git
+sklearn
+tensorboard
+torch_optimizer
+tables

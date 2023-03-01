@@ -1,0 +1,12 @@
+name: debug_finetune_model
+hidden_dim: 768
+layer_dim_feedforward: 3072
+layer_activation: gelu
+nhead: 12
+encoder_num_layers: 3
+input_dim: 50
+upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-30/19-26-27/checkpoint_last.pth #trained_weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-23/01-17-59/checkpoint_last.pth #trained_weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-25/01-33-50/checkpoint_last.pth #random weights
+#TODO check whether losses improve between trained and random
+frozen_upstream: True

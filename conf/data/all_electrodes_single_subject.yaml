@@ -1,0 +1,22 @@
+name: single_subject_all_electrode
+high_gamma: False
+samp_frequency: 2048
+raw_brain_data_dir: /storage/datasets/neuroscience/ecog
+#raw_brain_data_dir: /storage/czw/LanguageEcog/semantics/all_day_data/
+#subject: subject4
+subject: subject3
+#brain_runs: ['trial000']
+brain_runs: ['trial000']
+onsets_only: True
+#electrodes: ['F2Ia2']
+electrodes: ['F2Ia2', 'F2Ia3', 'F2Ia4', 'F2Ia5', 'F2Ia6', 'F2Ia7', 'F2Ia8', 'F2Ia9', 'F2Ia10', 'F2Ia11', 'F2Ia12', 'F2Ia13', 'F2Ia14', 'F2Ia15', 'F3c2', 'F3c3', 'F3c4', 'F3c5', 'F3c6', 'F3c7', 'F3c8', 'F3c9', 'F3b2', 'F3b3', 'F3b4', 'F3b5', 'F3b6', 'F3b7', 'F3aOF2', 'F3aOF3', 'F3aOF4', 'F3aOF5', 'F3aOF6', 'F3aOF7', 'F3d2', 'F3d3', 'F3d4', 'F3d5', 'F3d6', 'F3d7', 'F3d8', 'F3d9', 'T1aIc2', 'T1aIc3', 'T1aIc4', 'T1aIc5', 'P2a2', 'P2a3', 'P2a4', 'P2a5', 'P2a6', 'P2a7', 'P2a8', 'P2a9', 'T1b2', 'T1b3', 'T1b4', 'T1b5', 'T1cIe2', 'T1cIe3', 'T1cIe4', 'T1cIe5', 'T1cIe6', 'T1cIe7', 'T1cIe8', 'T1cIe9', 'T1cIe10', 'T1cIe11', 'P2b2', 'P2b3', 'P2b4', 'P2b5', 'P2b6', 'P2b7', 'P2b8', 'P2b9', 'P2b10', 'P2b11', 'P2b12', 'P2b13', 'P2b14', 'P2b15', 'O1aIb2', 'O1aIb3', 'O1aIb4', 'O1aIb5', 'O1aIb6', 'O1aIb7', 'O1aIb8', 'O1aIb9', 'O1aIb10', 'O1aIb11', 'O1aIb12', 'O1aIb13', 'O1aIb14', 'O1aIb15', 'O1bId2', 'O1bId3', 'O1bId4', 'O1bId5', 'O1bId6', 'O1bId7', 'O1bId8', 'O1bId9', 'O1bId10', 'O1bId11', 'O1bId12', 'O1bId13', 'O1bId14', 'O1bId15']
+rereference: laplacian
+normalization: False
+despike: False
+delta: -1.5
+duration: 3.0
+words: []
+cached_transcript_aligns: /storage/czw/LanguageEcog/semantics/saved_aligns
+#cached_transcript_aligns: None
+val_split: 0.1
+preprocessor: stft

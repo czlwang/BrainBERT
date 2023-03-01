@@ -1,0 +1,5 @@
+name: masked_tf_dataset
+val_split: 0.01
+data: /storage/czw/self_supervised_seeg/pretrain_data/manifests
+cached_features: /storage/czw/self_supervised_seeg/pretrain_superlet/manifests
+preprocessor: superlet

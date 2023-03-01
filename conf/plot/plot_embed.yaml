@@ -1,0 +1,8 @@
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-09/20-54-06/checkpoint_last.pth #trained weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-14/13-14-18/checkpoint_last.pth #random weights
+upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-17/18-00-23/checkpoint_last.pth #trained weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-05-28/01-20-42/checkpoint_last.pth #trained weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-14/14-52-04/checkpoint_last.pth #trained weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-16/16-08-39/checkpoint_last.pth #trained weights
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-17/02-03-52/checkpoint_last.pth #trained weights
+dim_reduce: tsne

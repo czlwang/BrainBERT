@@ -1,0 +1,2 @@
+out_dir: all_electrode_data
+brain_runs: ['trial000']

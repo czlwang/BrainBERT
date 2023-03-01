@@ -1,0 +1,14 @@
+name: pretraining_wavs_in_mem
+high_gamma: False
+samp_frequency: 2048
+raw_brain_data_dir: /storage/datasets/neuroscience/ecog
+#raw_brain_data_dir: /storage/czw/LanguageEcog/semantics/all_day_data/
+#subject: subject4
+subject: subject3
+#electrodes: ['T1Id6']
+electrodes: ['T1b2']
+brain_runs: ['trial000']
+rereference: laplacian
+normalization: False
+despike: False
+duration: 3.0

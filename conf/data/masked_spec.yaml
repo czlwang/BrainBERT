@@ -1,0 +1,3 @@
+name: masked_tf_dataset
+val_split: 0.1
+data: ???

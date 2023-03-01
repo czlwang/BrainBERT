@@ -1,0 +1,3 @@
+#upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-23/01-17-59/checkpoint_last.pth #trained weights
+upstream_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-06-25/01-33-50/checkpoint_last.pth #random weights
+dim_reduce: tsne

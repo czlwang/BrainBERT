@@ -1,0 +1,2 @@
+out_dir: all_day_data_morelet
+brain_runs: ['trial000', 'trial001', 'trial002']

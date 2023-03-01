@@ -1,0 +1,7 @@
+name: masked_tf_model
+hidden_dim: 384
+layer_dim_feedforward: 1200
+layer_activation: gelu
+nhead: 12
+encoder_num_layers: 3
+input_dim: 40

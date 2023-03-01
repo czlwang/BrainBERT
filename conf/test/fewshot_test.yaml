@@ -1,0 +1,6 @@
+out_dir: /storage/czw/self_supervised_seeg/fewshot_test/
+test_runs: 3
+test_split_path: "/storage/czw/self_supervised_seeg/data/test_split_trials.json"
+test_ex_min: 50
+test_ex_max: 1050
+test_ex_step: 50

@@ -1,0 +1,3 @@
+linear_results_path: /storage/czw/self_supervised_seeg/outputs/2022-08-30/01-14-20/all_test_results
+out_dir: /storage/czw/self_supervised_seeg/linear_results/speech_finetuning
+topk: 25

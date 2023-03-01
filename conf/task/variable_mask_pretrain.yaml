@@ -1,0 +1,7 @@
+name: spec_pretrain
+mask_type: variable
+#data: ???
+max_f: 250
+min_f: 0.01
+mask_p: 0.10
+n_freq_steps: 40

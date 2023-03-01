@@ -1,0 +1,26 @@
+runner:
+    lr: 1e-4
+    optim: Adam
+    train_batch_size: 16
+    valid_batch_size: 128
+    shuffle: False
+    device: cuda
+    total_steps: 400000
+    #total_steps: 40000
+    #world_size: 4
+    num_workers: 16
+    log_step: 500
+    checkpoint_step: 1000
+    grad_clip: 5.0
+    multi_gpu: False
+    #start_from_ckpt: /storage/czw/self_supervised_seeg/outputs/2022-05-13/02-28-15/checkpoint_last.pth
+    scheduler:
+        #name: reduce_on_plateau
+        name: ramp_up
+        total_steps: ${exp.runner.total_steps}
+        warmup: 0.07
+task:
+    name: seeg_wav_task
+criterion:
+    name: seeg_wav2vec_criterion
+
