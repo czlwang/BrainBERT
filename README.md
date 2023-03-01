@@ -1,10 +1,10 @@
 # BrainBERT
 
-BrainBERT is an modeling approach for learning self-supervised representations of intracranial electrode data.
+BrainBERT is an modeling approach for learning self-supervised representations of intracranial electrode data. See [paper](https://arxiv.org/abs/2302.14367) for details.
 
 We provide the training pipeline below.
 
-The data will be released as well. (Check back here for updates).
+The trained weights and training data will be released as well. (Check back here for updates).
 
 ## Installation
 Requirements:
