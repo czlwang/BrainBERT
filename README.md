@@ -18,6 +18,10 @@ pip install -r requirements.txt
 ### Input
 It is expected that the input is intracranial electrode data that has been Laplacian re-referenced.
 
+## Using BrainBERT embeddings
+- pretrained weights are available [here](https://drive.google.com/file/d/14ZBOafR7RJ4A6TsurOXjFVMXiVH6Kd_Q/view?usp=sharing)
+- see `notebooks/demo.ipynb` for an example input and example embedding
+
 ## Upstream
 ### BrainBERT pre-training
 ```
