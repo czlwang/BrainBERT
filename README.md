@@ -4,7 +4,7 @@ BrainBERT is an modeling approach for learning self-supervised representations o
 
 We provide the training pipeline below.
 
-The trained weights and training data will be released as well. (Check back here for updates).
+The trained weights have been released (see below) and pre-training data is available upon request.
 
 ## Installation
 Requirements:
