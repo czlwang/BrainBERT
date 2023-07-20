@@ -1,0 +1,2 @@
+test_split_path: "/storage/czw/BrainBERT/data/test_split_trials.json" #these are the trials (movies) you want to pull data from
+test_electrodes_path: "/storage/czw/BrainBERT/linear_results/" #this is the list  of electrodes you want to fine-tune/feature extract over
