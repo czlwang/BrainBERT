@@ -23,6 +23,17 @@ It is expected that the input is intracranial electrode data that has been Lapla
 - see `notebooks/demo.ipynb` for an example input and example embedding
 
 ## Upstream
+### BrainBERT pre-training data
+The data directory should be structured as:
+```
+/pretrain_data
+  |_manifests
+    |_manifests.tsv  <-- each line contains the path to the example and the length
+  |_<subject>
+    |_<trial>
+      |_<example>.npy
+```
+
 ### BrainBERT pre-training
 ```
 python3 run_train.py +exp=spec2vec ++exp.runner.device=cuda ++exp.runner.multi_gpu=True \
