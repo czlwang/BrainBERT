@@ -9,7 +9,7 @@ mne
 psutil
 tensorboardX
 git+https://github.com/ildoonet/pytorch-gradual-warmup-lr.git
-sklearn
+scikit-learn
 tensorboard
 torch_optimizer
 tables

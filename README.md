@@ -4,7 +4,7 @@ BrainBERT is an modeling approach for learning self-supervised representations o
 
 We provide the training pipeline below.
 
-The trained weights have been released (see below) and pre-training data is available upon request.
+The trained weights have been released (see below) and pre-training data can be found at [braintreebank.dev](https://braintreebank.dev)
 
 ## Installation
 Requirements:
@@ -32,6 +32,23 @@ The data directory should be structured as:
   |_<subject>
     |_<trial>
       |_<example>.npy
+```
+If using the data from the Brain Treebank, the data can be written using this command:
+```
+python3 -m data.write_pretrain_data_wavs +data=pretraining_template.yaml \
++data_prep=write_pretrain_split ++data.duration=5 \
+++data_prep.pretrain_split=/storage/czw/BrainBERT/data/pretrain_split_trials.json 
+++data_prep.out_dir=pretrain_data \
+++data.raw_brain_data_dir=/path/to/braintreebank_data/
+```
+This command expects the Brain Treebank data to have the following structure:
+```
+/braintreebank_data
+  |_electrode_labels
+  |_subject_metadata
+  |_localization
+  |_all_subject_data
+    |_sub_*_trial*.h5
 ```
 
 ### BrainBERT pre-training

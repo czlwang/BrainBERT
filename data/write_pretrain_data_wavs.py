@@ -1,6 +1,3 @@
-#usage: 
-#to write wavs to disk
-#python3 -m data.write_pretrain_data_wavs +data=pretraining_template.yaml +data_prep=write_pretrain_split ++data.duration=3
 from multiprocessing import Process
 from omegaconf import DictConfig, OmegaConf
 import hydra
@@ -31,34 +28,33 @@ def write_manifest(manifest_path, root_out, paths, lengths):
             writer.writerow(row)
 
 def write_trial_data(root_out, trial_id, data_cfg):
+    log.info(f'Writing {trial_id}')
     subject_id = data_cfg.subject
     data_cfg.brain_runs = [trial_id]
-    dataset = build_dataset(data_cfg)
-    log.info(f'Writing {trial_id}')
+    electrodes = data_cfg.electrodes
     paths, lengths = [], []
     trial_absolute_path = os.path.join(root_out, subject_id, trial_id)
     Path(trial_absolute_path).mkdir(exist_ok=True, parents=True)
-    for i in tqdm(range(len(dataset))):
-        example = dataset[i]["input"].squeeze()
-        file_name = f'{i}.npy'
-        relative_path = os.path.join(subject_id, trial_id, file_name)
-        save_path = os.path.join(trial_absolute_path, file_name)
-        np.save(save_path, example)
-        paths.append(str(relative_path))
-        lengths.append(example.shape[0])
 
+    global_i = 0
+    for electrode in tqdm(electrodes):#iterate over electrodes here to save memory
+        data_cfg_copy = data_cfg.copy()
+        data_cfg_copy.electrodes = [electrode]
+        dataset = build_dataset(data_cfg_copy)
+        for i in range(len(dataset)):
+            print("index", global_i)
+            example = dataset[i]["input"].squeeze()
+            file_name = f'{global_i}.npy'
+            relative_path = os.path.join(subject_id, trial_id, file_name)
+            save_path = os.path.join(trial_absolute_path, file_name)
+            np.save(save_path, example)
+            paths.append(str(relative_path))
+            lengths.append(example.shape[0])
+            global_i += 1
     manifest_path = os.path.join(root_out, "manifests", subject_id, trial_id)
     Path(manifest_path).mkdir(exist_ok=True, parents=True)
     write_manifest(manifest_path, root_out, paths, lengths)
     return paths, lengths
-
-def get_metadata(subject, trial):
-    dataset_dir = "/storage/datasets/neuroscience/ecog"
-    metadata_file = os.path.join(dataset_dir,f'data-by-subject/{subject}/data/trials/{trial}/metadata.json')
-    with open(metadata_file, 'r') as f:
-        meta_dict = json.load(f)
-        movie_id = meta_dict['filename']
-    return movie_id, meta_dict
 
 def write_absolute_manifests(root_out):
     absolute_path = Path(root_out).resolve()
@@ -89,9 +85,11 @@ def single_process(cfg, subject_splits):
     Path(root_out).mkdir(exist_ok=True, parents=True)
 
     for subject in subject_splits:
+        print("subject", subject)
         for trial in subject_splits[subject]:
+            print("trial", trial)
             data_cfg.brain_runs=[trial]
-            data_cfg.electrodes = get_clean_laplacian_electrodes(subject)
+            data_cfg.electrodes = get_clean_laplacian_electrodes(subject, data_root=cfg.data.raw_brain_data_dir)
             data_cfg.subject = subject
             write_trial_data(root_out, trial, data_cfg)
 

@@ -1,3 +1,4 @@
+from glob import glob as glob
 from dateutil import parser
 import json
 from datetime import datetime
@@ -19,19 +20,15 @@ class H5Data():
         trial = run_id
 
         # Path to neural data h5 file
-        self.neural_data_file = os.path.join(dataset_dir,f'data-by-subject/{subject}/data/trials/{trial}/data-sharded.h5')
-
-        # Path to neural data hash
-        self.neural_data_hash = os.path.join(dataset_dir,f'data-by-subject/{subject}/data/trials/{trial}/data.h5.md5')
-
-        # Path to experiment meta data directory
-        self.headers_dir = os.path.join(dataset_dir, f'data-by-subject/{subject}/data/trials/{trial}/headers')
-
-        # Path to file with timestamp
-        self.timestamp_data = os.path.join(dataset_dir, f'data-by-subject/{subject}/data/trials/{trial}/time-stamp.json')
+        self.neural_data_file = os.path.join(dataset_dir, f'all_subject_data/{subject}_{trial}.h5')
 
         # Path to brain regions csv file
-        self.regions_file = os.path.join(dataset_dir, f'data-by-subject/{subject}/localization/depth-wm.csv')
+        self.regions_file = os.path.join(dataset_dir, f'localization/{subject}/depth-wm.csv')
+
+        electrode_labels_file = glob(os.path.join(dataset_dir, "electrode_labels", subject, "electrode_labels.json"))
+        assert len(electrode_labels_file)==1
+        electrode_labels_file = electrode_labels_file[0]
+        self.electrode_labels_file = electrode_labels_file
 
         self.timestamp = self.get_timestamp()
 
@@ -49,12 +46,8 @@ class H5Data():
             returns list of electrodes in this subject and trial
             NOTE: the order of these labels is important. Their position corresponds with a row in data.h5
         '''
-        def get_string_from_hdf5_reference(file, ref):
-            return ''.join(chr(i) for i in file[ref[0]][:])
-
-        header_file_name = os.listdir(self.headers_dir)[0]
-        header_file = h5py.File(os.path.join(self.headers_dir, header_file_name), 'r')
-        electrode_labels = [get_string_from_hdf5_reference(header_file, ref) for ref in header_file['channel_labels']]
-        strip_name = lambda x: x.replace("*","").replace("#", "").replace("_", "")
-        electrode_labels = [strip_name(e) for e in electrode_labels]
+        with open(self.electrode_labels_file, "r") as f:
+            electrode_labels = json.load(f)
+        strip_string = lambda x: x.replace("*","").replace("#","").replace("_","")
+        electrode_labels = [strip_string(e) for e in electrode_labels]
         return electrode_labels

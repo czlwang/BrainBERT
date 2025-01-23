@@ -159,16 +159,9 @@ class H5DataReader:
 
         assert len(indices) == len(selected)
 
-        with open(self.trial_data.neural_data_hash, 'r') as f:
-            lines = f.readlines()
-            precomputed_hash = lines[0].split()[0]
-
         electrode_data = []
         with h5py.File(self.trial_data.neural_data_file, 'r') as hf:
-            raw_data = hf['data']#TODO add hash check
-            stored_hash = raw_data.attrs['orig_data_hash']
-            assert stored_hash == precomputed_hash, "need to update transposed data"
-
+            raw_data = hf['data']
             for i in indices:
                 electrode_data.append(raw_data[f'electrode_{i}'][:])
         electrode_data_arr = np.stack(electrode_data)

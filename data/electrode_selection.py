@@ -1,3 +1,4 @@
+from glob import glob as glob
 from .utils import stem_electrode_name
 import os
 import json
@@ -12,36 +13,30 @@ def get_all_laplacian_electrodes(elec_list):
     electrodes = [f'{x}{y}' for (x,y) in laplacian_stems]
     return electrodes
 
-def get_all_electrodes(subject):
+def get_all_electrodes(subject, data_root=None):
     '''
         returns list of electrodes in this subject and trial
         NOTE: the order of these labels is important. Their position corresponds with a row in data.h5
     '''
-    trial = "trial000" #Assume that every trial contains the same electrodes
-    dataset_dir = "/storage/datasets/neuroscience/ecog"
-    headers_dir = os.path.join(dataset_dir, f'data-by-subject/{subject}/data/trials/{trial}/headers')
-
-    def get_string_from_hdf5_reference(f, ref):
-        return ''.join(chr(i) for i in f[ref[0]][:])
-
-    header_file_name = os.listdir(headers_dir)[0]
-    header_file = h5py.File(os.path.join(headers_dir, header_file_name), 'r')
-    electrode_labels = [get_string_from_hdf5_reference(header_file, ref) for ref in header_file['channel_labels']]
-
+    electrode_labels_file = glob(os.path.join(data_root, "electrode_labels", subject, "electrode_labels.json"))
+    assert len(electrode_labels_file)==1
+    electrode_labels_file = electrode_labels_file[0]
+    with open(electrode_labels_file, "r") as f:
+        electrode_labels = json.load(f)
     strip_string = lambda x: x.replace("*","").replace("#","").replace("_","")
     electrode_labels = [strip_string(e) for e in electrode_labels]
     return electrode_labels
 
-def clean_electrodes(subject, electrodes):
-    corrupted_electrodes_path = "/storage/czw/self_supervised_seeg/data/corrupted_elec.json"
+def clean_electrodes(subject, electrodes, data_root=None):
+    corrupted_electrodes_path = os.path.join(data_root, "corrupted_elec.json")
     with open(corrupted_electrodes_path, "r") as f:
         corrupted_elecs = json.load(f)
     corrupt = corrupted_elecs[subject]
     return list(set(electrodes).difference(corrupt))
 
-def get_clean_laplacian_electrodes(subject):
-    electrodes = get_all_electrodes(subject)
-    electrodes = clean_electrodes(subject, electrodes)
+def get_clean_laplacian_electrodes(subject, data_root=None):
+    electrodes = get_all_electrodes(subject, data_root=data_root)
+    electrodes = clean_electrodes(subject, electrodes, data_root=data_root)
     laplacian_electrodes = get_all_laplacian_electrodes(electrodes)
     return laplacian_electrodes
 
