@@ -29,6 +29,7 @@ class H5Data():
         assert len(electrode_labels_file)==1
         electrode_labels_file = electrode_labels_file[0]
         self.electrode_labels_file = electrode_labels_file
+        self.timestamp_data = os.path.join(dataset_dir, "timestamps", f"{subject}_{trial}_timestamp.json")
 
         self.timestamp = self.get_timestamp()
 
