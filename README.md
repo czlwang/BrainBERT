@@ -37,7 +37,7 @@ If using the data from the Brain Treebank, the data can be written using this co
 ```
 python3 -m data.write_pretrain_data_wavs +data=pretraining_template.yaml \
 +data_prep=write_pretrain_split ++data.duration=5 \
-++data_prep.pretrain_split=/storage/czw/BrainBERT/data/pretrain_split_trials.json 
+++data_prep.pretrain_split=data/pretrain_split_trials.json \
 ++data_prep.out_dir=pretrain_data \
 ++data.raw_brain_data_dir=/path/to/braintreebank_data/
 ```
