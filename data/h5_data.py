@@ -30,17 +30,6 @@ class H5Data():
         electrode_labels_file = electrode_labels_file[0]
         self.electrode_labels_file = electrode_labels_file
 
-        self.timestamp = self.get_timestamp()
-
-    def get_timestamp(self):
-        if not os.path.exists(self.timestamp_data):
-            return None
-
-        with open(self.timestamp_data, 'r') as f:
-            d = json.load(f)
-            timestamp = parser.parse(d["timestamp"])
-            return timestamp
-
     def get_brain_region_localization(self) -> List[str]:
         '''
             returns list of electrodes in this subject and trial
