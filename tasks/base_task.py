@@ -3,7 +3,8 @@ import criterions
 from torch.utils import data
 import torch
 from datasets import build_dataset
-from tasks.utils import split_dataset
+from tasks.utils import split_dataset_idxs
+from torch.utils.data import Subset
 
 class BaseTask():
     def __init__(self, cfg):
@@ -16,7 +17,17 @@ class BaseTask():
         #create train/val/test dataset
         dataset = build_dataset(data_cfg, task_cfg=self.cfg, preprocessor_cfg=preprocessor_cfg)
 
-        train_set, val_set, test_set = split_dataset(dataset, data_cfg)
+        train_idxs, val_idxs, test_idxs = split_dataset_idxs(dataset, data_cfg)
+
+        train_set = Subset(dataset, train_idxs)
+        val_set = Subset(dataset, val_idxs)
+        test_set = Subset(dataset, test_idxs)
+
+        if "test_data_cfg" in data_cfg:
+            test_dataset = build_dataset(data_cfg.test_data_cfg, task_cfg=self.cfg, preprocessor_cfg=preprocessor_cfg)
+            val_set = Subset(test_dataset, val_idxs)
+            test_set = Subset(test_dataset, test_idxs)
+
         self.dataset = dataset
         self.train_set = train_set
         self.valid_set = val_set
