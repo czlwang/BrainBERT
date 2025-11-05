@@ -45,10 +45,9 @@ def fixed_mask_inputs(data, task_cfg):
         else:
             masked_data[start:end,:] = mask_fill_value
 
+    masked_steps, valid_starts = create_masked_intervals(data, task_cfg.freq_mask_consecutive_min, task_cfg.freq_mask_consecutive_max, task_cfg.freq_mask_p, axis="freq")
     for (start,end) in masked_steps:
         mask_label[:,start:end] = 1
-
-    masked_steps, valid_starts = create_masked_intervals(data, task_cfg.freq_mask_consecutive_min, task_cfg.freq_mask_consecutive_max, task_cfg.freq_mask_p, axis="freq")
     for (start,end) in masked_steps:
         dice = random.random()
         if dice < 0.1:#TODO look at attentions
