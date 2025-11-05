@@ -35,7 +35,7 @@ class SpecPretrain(BaseTask):
         assert input_dim == cfg.input_dim
         return models.build_model(cfg)
  
-    def get_batch_iterator(self, dataset, batch_size, shuffle=True, **kwargs):
+    def get_batch_iterator(self, dataset, batch_size, **kwargs):
         return data.DataLoader(dataset, batch_size=batch_size, collate_fn=spec_collator, **kwargs)
 
     def output_logs(self, train_logging_outs, val_logging_outs, writer, global_step):
