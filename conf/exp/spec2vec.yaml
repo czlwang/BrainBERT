@@ -4,9 +4,9 @@ runner:
     train_batch_size: 256
     valid_batch_size: 256
     shuffle: False
-    multi_gpu: True
+    multi_gpu: False
     device: cuda
-    total_steps: 400000
+    total_steps: 500000
     #world_size: 4
     num_workers: 16
     log_step: 1000
