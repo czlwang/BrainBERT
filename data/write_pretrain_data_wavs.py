@@ -42,7 +42,7 @@ def write_trial_data(root_out, trial_id, data_cfg):
         data_cfg_copy.electrodes = [electrode]
         dataset = build_dataset(data_cfg_copy)
         for i in range(len(dataset)):
-            print("index", global_i)
+            # print("index", global_i)
             example = dataset[i]["input"].squeeze()
             file_name = f'{global_i}.npy'
             relative_path = os.path.join(subject_id, trial_id, file_name)

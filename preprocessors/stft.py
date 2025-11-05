@@ -35,7 +35,7 @@ class STFTPreprocessor(nn.Module):
             Zxx = zscore(Zxx, axis=-1)#TODO is this order correct? I put it this way to prevent input nans
             if (Zxx.std() == 0).any():
                 Zxx = np.ones_like(Zxx)
-            Zxx = Zxx[:,10:-10]
+            Zxx = Zxx[:,self.cfg.clip_k:-self.cfg.clip_k]
         elif normalizing=="db":
             Zxx = np.log(Zxx)
 
@@ -48,6 +48,10 @@ class STFTPreprocessor(nn.Module):
         super(STFTPreprocessor, self).__init__()
         self.cfg = cfg
 
-    def forward(self, wav):
-        _,_,linear = self.get_stft(wav, 2048, show_fs=self.cfg.freq_channel_cutoff, nperseg=self.cfg.nperseg, noverlap=self.cfg.noverlap, normalizing=self.cfg.normalizing, return_onesided=True) #TODO hardcode sampling rate
-        return linear
+    def forward(self, wav, all_outputs=False):
+        f,t,linear = self.get_stft(wav, fs=self.cfg.fs, show_fs=self.cfg.freq_channel_cutoff, nperseg=self.cfg.nperseg, noverlap=self.cfg.noverlap, normalizing=self.cfg.normalizing, return_onesided=True) #TODO hardcode sampling rate
+        
+        if all_outputs: 
+            return f, t, linear
+        else:
+            return linear
